@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Application received — Systematic Trader 90</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #0a0b0e; --ink-2: #111217;
+    --paper: #f4efe6; --paper-2: #d9d2c2; --paper-dim: #7a756a;
+    --hair: #24252a; --amber: #e8b86f; --amber-hi: #f7d49a; --sage: #7fb77e;
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter Tight', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: var(--font-body); line-height: 1.6;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 40px 24px; text-align: center;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background: radial-gradient(circle at 50% 20%, rgba(127, 183, 126, 0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .wrap { position: relative; max-width: 560px; }
+  .check {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(127, 183, 126, 0.12);
+    border: 1px solid var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px;
+    font-size: 28px; color: var(--sage);
+  }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 20px;
+  }
+  h1 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  h1 em { font-style: italic; color: var(--amber); }
+  p { color: var(--paper-2); font-size: 16px; margin-bottom: 24px; }
+  .btn {
+    display: inline-block; margin-top: 24px;
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); background: var(--amber);
+    padding: 18px 32px; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn:hover { background: var(--amber-hi); }
+  .secondary {
+    color: var(--paper-dim); font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.1em; margin-top: 36px; padding-top: 24px;
+    border-top: 1px solid var(--hair);
+  }
+  .secondary a { color: var(--amber); text-decoration: none; }
+  .secondary a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="check">✓</div>
+  <div class="eyebrow">Application received</div>
+  <h1>Got it. <em>I'll read it personally</em> within 48 hours.</h1>
+  <p>
+    If you're a fit, you'll get a Calendar link to book a 30-minute discovery call.
+    If you're not a fit, I'll tell you why and (when relevant) point you to a better option.
+  </p>
+  <p>
+    Want to skip the wait? Book the call now — I'll have your application open when we talk.
+  </p>
+  <a href="https://calendar.app.google/KYdPHcE9sB4Uj3A18" class="btn">Book the call →</a>
+  <div class="secondary">
+    Questions in the meantime? <a href="mailto:edgard.extra@gmail.com">edgard.extra@gmail.com</a> · <a href="index.html">← back to overview</a>
+  </div>
+</div>
+</body>
+</html>

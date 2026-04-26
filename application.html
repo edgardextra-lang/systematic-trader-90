@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systematic Trader 90 — Application</title>
+<meta name="description" content="Apply for the Systematic Trader 90 founding cohort. 5 spots, 1:1 with Eddy, $4,500 flat." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #0a0b0e; --ink-2: #111217; --ink-3: #1a1b21;
+    --paper: #f4efe6; --paper-2: #d9d2c2; --paper-dim: #7a756a;
+    --paper-mute: #4f4b44; --hair: #24252a; --hair-hi: #2f3036;
+    --amber: #e8b86f; --amber-hi: #f7d49a;
+    --rust: #d4493d; --sage: #7fb77e;
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter Tight', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: var(--font-body); line-height: 1.55;
+    min-height: 100vh; padding: 60px 24px;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background: radial-gradient(circle at 15% 85%, rgba(232, 184, 111, 0.05), transparent 40%);
+    pointer-events: none; z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .back-link {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.15em; color: var(--paper-dim);
+    text-transform: uppercase; margin-bottom: 32px; display: inline-block;
+  }
+  .back-link:hover { color: var(--paper); text-decoration: none; }
+
+  h1 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  h1 em { font-style: italic; color: var(--amber); }
+  .lede {
+    color: var(--paper-2); font-size: 16px; margin-bottom: 48px;
+    max-width: 560px; line-height: 1.6;
+  }
+
+  form { display: flex; flex-direction: column; gap: 32px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  label {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--paper-dim);
+  }
+  label.required::after { content: ' *'; color: var(--rust); }
+  .helper {
+    font-size: 13px; color: var(--paper-mute); margin-top: 2px;
+    font-style: italic;
+  }
+  input, textarea, select {
+    background: var(--ink-2); border: 1px solid var(--hair);
+    color: var(--paper); padding: 14px 16px;
+    font-family: var(--font-body); font-size: 15px;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none; border-color: var(--amber);
+  }
+  textarea { min-height: 100px; resize: vertical; font-family: var(--font-body); }
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23e8b86f' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+  }
+
+  .radio-group { display: flex; flex-direction: column; gap: 8px; }
+  .radio-option {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; background: var(--ink-2);
+    border: 1px solid var(--hair); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .radio-option:hover { border-color: var(--paper-dim); }
+  .radio-option input[type="radio"] {
+    width: 16px; height: 16px; margin: 4px 0 0 0;
+    accent-color: var(--amber); cursor: pointer;
+  }
+  .radio-option span { font-size: 15px; color: var(--paper-2); }
+  .radio-option:has(input:checked) { border-color: var(--amber); background: rgba(232, 184, 111, 0.05); }
+
+  .submit {
+    margin-top: 16px;
+    background: var(--amber); color: var(--ink);
+    padding: 18px 32px; border: none; cursor: pointer;
+    font-family: var(--font-mono); font-size: 13px;
+    font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; transition: all 0.2s;
+  }
+  .submit:hover { background: var(--amber-hi); }
+
+  .footnote {
+    margin-top: 24px; padding-top: 24px;
+    border-top: 1px solid var(--hair);
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--paper-dim); letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="index.html" class="back-link">← Back to overview</a>
+
+  <h1>Apply for the <em>founding cohort</em>.</h1>
+  <p class="lede">
+    5 takes ~5 minutes. I read every application personally. If you're a fit, I'll send a Calendar
+    link to book a 30-minute call within 48 hours. If you're not, I'll tell you why.
+  </p>
+
+  <form id="apply-form" action="https://formsubmit.co/edgard.extra@gmail.com" method="POST">
+    <!-- formsubmit settings -->
+    <input type="hidden" name="_subject" value="[ST90] New application">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://edgardextra-lang.github.io/systematic-trader-90/thanks.html">
+
+    <div class="field">
+      <label for="name" class="required">Your name</label>
+      <input id="name" name="name" type="text" required>
+    </div>
+
+    <div class="field">
+      <label for="email" class="required">Email</label>
+      <input id="email" name="email" type="email" required>
+    </div>
+
+    <div class="field">
+      <label for="telegram">Telegram handle</label>
+      <input id="telegram" name="telegram" type="text" placeholder="@yourhandle">
+      <div class="helper">For RiskGuard during the program. Optional now.</div>
+    </div>
+
+    <div class="field">
+      <label for="timezone" class="required">Timezone</label>
+      <select id="timezone" name="timezone" required>
+        <option value="">Select…</option>
+        <option>Pacific (PT, UTC-8/-7)</option>
+        <option>Mountain (MT, UTC-7/-6)</option>
+        <option>Central (CT, UTC-6/-5)</option>
+        <option>Eastern (ET, UTC-5/-4)</option>
+        <option>UK (GMT/BST)</option>
+        <option>Europe (CET/CEST)</option>
+        <option>Middle East (GST)</option>
+        <option>India (IST)</option>
+        <option>SE Asia / Singapore</option>
+        <option>Japan / Korea</option>
+        <option>Australia / NZ</option>
+        <option>LATAM</option>
+        <option>Other (specify in pains box)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="required">Trading capital actively deployed</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="capital" value="under_25k" required><span>Under $25k</span></label>
+        <label class="radio-option"><input type="radio" name="capital" value="25k_50k"><span>$25k – $50k</span></label>
+        <label class="radio-option"><input type="radio" name="capital" value="50k_100k"><span>$50k – $100k</span></label>
+        <label class="radio-option"><input type="radio" name="capital" value="100k_250k"><span>$100k – $250k</span></label>
+        <label class="radio-option"><input type="radio" name="capital" value="over_250k"><span>Over $250k</span></label>
+      </div>
+      <div class="helper">Honest answer. Under $25k is fine to apply but I'll likely point you to free resources first.</div>
+    </div>
+
+    <div class="field">
+      <label class="required">How long have you been trading actively?</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="experience" value="under_1y" required><span>Under 1 year</span></label>
+        <label class="radio-option"><input type="radio" name="experience" value="1_3y"><span>1 – 3 years</span></label>
+        <label class="radio-option"><input type="radio" name="experience" value="3_5y"><span>3 – 5 years</span></label>
+        <label class="radio-option"><input type="radio" name="experience" value="over_5y"><span>5+ years</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="required">Approximate P&L over the last 12 months</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="pnl" value="big_loss" required><span>Down 30%+ (got humbled)</span></label>
+        <label class="radio-option"><input type="radio" name="pnl" value="small_loss"><span>Down 10–30%</span></label>
+        <label class="radio-option"><input type="radio" name="pnl" value="breakeven"><span>Roughly breakeven (±10%)</span></label>
+        <label class="radio-option"><input type="radio" name="pnl" value="modest_gain"><span>Up 10–50%</span></label>
+        <label class="radio-option"><input type="radio" name="pnl" value="strong_gain"><span>Up 50%+ (and want to systematize)</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="venue">Primary trading venue(s)</label>
+      <input id="venue" name="venue" type="text" placeholder="Hyperliquid, Bybit, Binance, dYdX, etc.">
+    </div>
+
+    <div class="field">
+      <label for="pains" class="required">What's the #1 thing breaking your trading right now?</label>
+      <textarea id="pains" name="pains" required placeholder="e.g. 'I can pick good entries but I move my stops when I shouldn't.' or 'I make money on a setup then give it back chasing FOMO trades.' Be specific — the more honest, the better the call."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="goal" class="required">What does success look like 90 days from now?</label>
+      <textarea id="goal" name="goal" required placeholder="e.g. 'A system I follow without thinking, RiskGuard catching my dumb trades, one bot running my mean-revert idea.'"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="commitment" class="required">Can you commit ~3–4 hours per week for 90 days?</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="commitment" value="yes" required><span>Yes — I've blocked the time</span></label>
+        <label class="radio-option"><input type="radio" name="commitment" value="probably"><span>Probably — depends on the week</span></label>
+        <label class="radio-option"><input type="radio" name="commitment" value="no"><span>No — not realistic right now</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="referral">How did you find me?</label>
+      <input id="referral" name="referral" type="text" placeholder="TikTok, HyperForge waitlist, X, friend, etc.">
+    </div>
+
+    <div class="field">
+      <label for="anything">Anything else I should know?</label>
+      <textarea id="anything" name="anything" placeholder="Optional — questions, concerns, anything that didn't fit above."></textarea>
+    </div>
+
+    <button type="submit" class="submit">Send application →</button>
+
+    <div class="footnote">
+      I read every application personally and respond within 48h.
+      If we're a fit you'll get a Calendar link to book a 30-minute discovery call.
+      If we're not, I'll tell you why and (when relevant) point you to free resources or a different option.
+      <br><br>
+      Founding cohort is capped at 5. After that the price moves to $7,500 in a group of 8.
+    </div>
+
+  </form>
+
+</div>
+</body>
+</html>

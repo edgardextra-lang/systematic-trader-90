@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systematic Trader 90 — Stop guessing. Ship a bot. Trade with rules.</title>
+<meta name="description" content="A 90-day program for traders with $25k–$250k who break even and know they're leaving edge on the table. You leave with a documented system, RiskGuard live on your account, and one bot trading your edge." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:        #0a0b0e;
+    --ink-2:      #111217;
+    --ink-3:      #1a1b21;
+    --paper:      #f4efe6;
+    --paper-2:    #d9d2c2;
+    --paper-dim:  #7a756a;
+    --paper-mute: #4f4b44;
+    --hair:       #24252a;
+    --hair-hi:    #2f3036;
+    --amber:      #e8b86f;
+    --amber-hi:   #f7d49a;
+    --rust:       #d4493d;
+    --sage:       #7fb77e;
+
+    --font-display: 'Instrument Serif', 'Times New Roman', serif;
+    --font-body:    'Inter Tight', -apple-system, sans-serif;
+    --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 85%, rgba(232, 184, 111, 0.05), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(212, 73, 61, 0.03), transparent 50%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.94 0 0 0 0 0.82 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.85;
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10, 11, 14, 0.55);
+    backdrop-filter: blur(14px) saturate(120%);
+    border-bottom: 1px solid transparent;
+    transition: all 0.25s ease;
+  }
+  nav.scrolled { background: rgba(10, 11, 14, 0.92); border-bottom-color: var(--hair); padding: 12px 32px; }
+  .brand {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.18em; color: var(--paper);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .brand-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 10px rgba(232, 184, 111, 0.55);
+  }
+  .nav-cta {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--ink); background: var(--amber);
+    padding: 10px 18px; border: 1px solid var(--amber);
+    transition: all 0.2s ease; cursor: pointer;
+    text-transform: uppercase;
+  }
+  .nav-cta:hover { background: var(--amber-hi); }
+
+  /* Hero */
+  .hero { padding: 150px 0 90px; border-bottom: 1px solid var(--hair); }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--amber); }
+  .pulse-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--sage);
+    box-shadow: 0 0 8px rgba(127, 183, 126, 0.65);
+    animation: pulse 1.8s ease-in-out infinite;
+    margin-left: auto;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  h1 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(44px, 6.4vw, 88px); line-height: 1.0;
+    letter-spacing: -0.02em; color: var(--paper); margin-bottom: 32px;
+  }
+  h1 em { font-style: italic; color: var(--amber); }
+  h1 .strike { position: relative; color: var(--paper-dim); display: inline-block; }
+  h1 .strike::after {
+    content: ''; position: absolute;
+    top: 52%; left: -4%; right: -4%; height: 3px;
+    background: var(--rust); transform: rotate(-1.2deg);
+  }
+  .hero p.lede {
+    font-size: 19px; color: var(--paper-2);
+    max-width: 640px; line-height: 1.6; margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--paper-dim); letter-spacing: 0.08em;
+    padding-top: 28px; border-top: 1px solid var(--hair);
+  }
+  .hero-meta span { color: var(--paper); }
+  .hero-meta strong { color: var(--amber); font-weight: 600; }
+
+  .cta-row { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 36px; }
+  .btn-primary {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); background: var(--amber);
+    padding: 18px 32px; border: none; cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .btn-primary:hover { background: var(--amber-hi); transform: translateY(-1px); }
+  .btn-secondary {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--paper); background: transparent;
+    padding: 18px 28px; border: 1px solid var(--hair-hi);
+    transition: all 0.2s ease; cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--paper); }
+
+  /* Sections */
+  section { padding: 90px 0; border-bottom: 1px solid var(--hair); }
+  .section-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--paper-dim); margin-bottom: 24px;
+  }
+  h2 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(34px, 4.4vw, 56px); line-height: 1.1;
+    letter-spacing: -0.01em; color: var(--paper); margin-bottom: 36px;
+    max-width: 760px;
+  }
+  h2 em { font-style: italic; color: var(--amber); }
+
+  /* Outcome card */
+  .outcome-card {
+    background: var(--ink-2); border: 1px solid var(--hair);
+    padding: 56px 48px; margin-top: 24px; position: relative;
+  }
+  .outcome-card::before {
+    content: ''; position: absolute; top: 0; left: 0; height: 3px; width: 80px;
+    background: var(--amber);
+  }
+  .outcome-card .quote {
+    font-family: var(--font-display); font-style: italic;
+    font-size: clamp(22px, 2.6vw, 30px); line-height: 1.4;
+    color: var(--paper); max-width: 740px;
+  }
+  .outcome-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; }
+  .outcome-item {
+    border-left: 2px solid var(--amber); padding-left: 18px;
+  }
+  .outcome-item .num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--amber); letter-spacing: 0.18em; margin-bottom: 8px;
+  }
+  .outcome-item .what {
+    font-family: var(--font-display); font-size: 22px; line-height: 1.25;
+    color: var(--paper); margin-bottom: 6px;
+  }
+  .outcome-item .desc { font-size: 14px; color: var(--paper-dim); line-height: 1.5; }
+
+  /* Phases */
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px; }
+  .phase {
+    background: var(--ink-2); border: 1px solid var(--hair);
+    padding: 32px; position: relative;
+  }
+  .phase-num {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.2em; color: var(--paper-dim); margin-bottom: 12px;
+  }
+  .phase-title {
+    font-family: var(--font-display); font-size: 26px; line-height: 1.2;
+    color: var(--paper); margin-bottom: 16px;
+  }
+  .phase-weeks {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--amber); letter-spacing: 0.1em; margin-bottom: 20px;
+  }
+  .phase ul { list-style: none; padding: 0; }
+  .phase li {
+    font-size: 14px; color: var(--paper-2); line-height: 1.6;
+    padding-left: 18px; position: relative; margin-bottom: 8px;
+  }
+  .phase li::before {
+    content: '→'; position: absolute; left: 0; color: var(--amber);
+    font-family: var(--font-mono); font-size: 12px;
+  }
+  .phase-deliverable {
+    margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hair);
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--sage); letter-spacing: 0.08em; line-height: 1.5;
+  }
+
+  /* Who section */
+  .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; }
+  .who-card {
+    padding: 32px; border: 1px solid var(--hair); background: var(--ink-2);
+  }
+  .who-card.yes { border-left: 3px solid var(--sage); }
+  .who-card.no { border-left: 3px solid var(--rust); opacity: 0.85; }
+  .who-card h3 {
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--paper); margin-bottom: 20px;
+  }
+  .who-card.yes h3 { color: var(--sage); }
+  .who-card.no h3 { color: var(--rust); }
+  .who-card ul { list-style: none; padding: 0; }
+  .who-card li {
+    font-size: 15px; color: var(--paper-2); line-height: 1.6;
+    padding-left: 22px; position: relative; margin-bottom: 12px;
+  }
+  .who-card.yes li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
+  .who-card.no li::before { content: '✕'; position: absolute; left: 0; color: var(--rust); font-weight: 600; }
+
+  /* Pricing */
+  .pricing-card {
+    background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+    border: 1px solid var(--amber);
+    padding: 56px 48px;
+    position: relative;
+    margin-top: 24px;
+  }
+  .pricing-card::before {
+    content: 'FOUNDING — 5 SPOTS';
+    position: absolute; top: -12px; left: 32px;
+    font-family: var(--font-mono); font-size: 10px;
+    background: var(--amber); color: var(--ink);
+    padding: 6px 14px; letter-spacing: 0.18em; font-weight: 600;
+  }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .price-amount {
+    font-family: var(--font-display); font-size: 84px;
+    line-height: 1; color: var(--paper); margin-bottom: 8px;
+  }
+  .price-amount .currency { font-size: 32px; vertical-align: top; color: var(--amber); margin-right: 6px; }
+  .price-detail {
+    font-family: var(--font-mono); font-size: 13px;
+    color: var(--paper-dim); margin-bottom: 24px; letter-spacing: 0.05em;
+  }
+  .price-detail strike { text-decoration: line-through; color: var(--paper-mute); margin-right: 10px; }
+  .price-future {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--paper-dim); letter-spacing: 0.08em;
+    padding-top: 20px; border-top: 1px solid var(--hair);
+  }
+  .includes-list { list-style: none; padding: 0; }
+  .includes-list li {
+    font-size: 14px; color: var(--paper-2); line-height: 1.6;
+    padding: 10px 0 10px 28px; position: relative;
+    border-bottom: 1px solid var(--hair);
+  }
+  .includes-list li:last-child { border-bottom: none; }
+  .includes-list li::before {
+    content: '◆'; position: absolute; left: 0; color: var(--amber);
+    font-size: 10px; top: 14px;
+  }
+  .includes-list li strong { color: var(--paper); font-weight: 600; }
+
+  /* FAQ */
+  .faq-item {
+    border-bottom: 1px solid var(--hair); padding: 24px 0;
+    cursor: pointer; transition: all 0.2s ease;
+  }
+  .faq-item:hover .faq-q { color: var(--amber); }
+  .faq-q {
+    font-family: var(--font-display); font-size: 22px;
+    color: var(--paper); margin-bottom: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: color 0.2s ease;
+  }
+  .faq-q::after {
+    content: '+'; font-family: var(--font-mono); font-size: 24px;
+    color: var(--amber); transition: transform 0.2s ease;
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    font-size: 15px; color: var(--paper-2); line-height: 1.65;
+    max-height: 0; overflow: hidden; transition: all 0.3s ease;
+    padding-top: 0;
+  }
+  .faq-item.open .faq-a { max-height: 600px; padding-top: 16px; }
+
+  /* CTA section */
+  .final-cta {
+    text-align: center; padding: 120px 0;
+    background: radial-gradient(ellipse at center, rgba(232, 184, 111, 0.08), transparent 60%);
+  }
+  .final-cta h2 { margin: 0 auto 32px; max-width: 720px; }
+  .final-cta p { color: var(--paper-2); font-size: 17px; max-width: 560px; margin: 0 auto 40px; }
+  .final-cta .cta-row { justify-content: center; }
+
+  /* Footer */
+  footer {
+    padding: 40px 0; border-top: 1px solid var(--hair);
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--paper-mute); letter-spacing: 0.08em;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  footer a:hover { color: var(--paper); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .phases { grid-template-columns: 1fr; }
+    .who-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; gap: 32px; }
+    .pricing-card { padding: 40px 28px; }
+    .outcome-card { padding: 36px 24px; }
+    section { padding: 64px 0; }
+    .hero { padding: 130px 0 60px; }
+    .nav-cta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="brand">
+    <span class="brand-dot"></span>
+    SYSTEMATIC TRADER 90
+  </a>
+  <a href="#apply" class="nav-cta">Apply</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      90-Day Program · 5 Founding Spots
+      <span class="pulse-dot"></span>
+    </div>
+
+    <h1>
+      Stop <span class="strike">guessing.</span><br>
+      Ship a bot.<br>
+      Trade with <em>rules.</em>
+    </h1>
+
+    <p class="lede">
+      A 90-day program for traders with $25k–$250k who break even,
+      know they're leaving edge on the table, and are done trading on vibes.
+      You leave with a documented system, RiskGuard live on your account,
+      and one bot trading your edge.
+    </p>
+
+    <div class="cta-row">
+      <a href="#apply" class="btn-primary">Apply for Founding Cohort →</a>
+      <a href="#program" class="btn-secondary">See the program</a>
+    </div>
+
+    <div class="hero-meta">
+      <div><strong>$4,500</strong> &nbsp;founding price (next 5 only)</div>
+      <div><strong>1:1</strong> &nbsp;weekly with Eddy</div>
+      <div><strong>90 days</strong> &nbsp;to live bot</div>
+      <div>built by the operator of <span>17 live HL bots</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOME -->
+<section id="outcome">
+  <div class="wrap">
+    <div class="section-eyebrow">The promise</div>
+    <h2>In 90 days you walk away with <em>four things</em> you don't have today.</h2>
+
+    <div class="outcome-card">
+      <p class="quote">
+        "A documented trading system, a risk framework that survives a bad week,
+        RiskGuard configured to your account, and one bot live on Hyperliquid —
+        built from your own edge, not mine."
+      </p>
+
+      <div class="outcome-list">
+        <div class="outcome-item">
+          <div class="num">01 / SYSTEM</div>
+          <div class="what">A written system</div>
+          <div class="desc">Entry, exit, sizing, what to skip. No more "vibes" trades.</div>
+        </div>
+        <div class="outcome-item">
+          <div class="num">02 / RISK</div>
+          <div class="what">Risk framework</div>
+          <div class="desc">Daily loss caps, position limits, blowup protection. Survives a bad week.</div>
+        </div>
+        <div class="outcome-item">
+          <div class="num">03 / GUARD</div>
+          <div class="what">RiskGuard live</div>
+          <div class="desc">Telegram bot enforcing your rules on Hyperliquid 24/7.</div>
+        </div>
+        <div class="outcome-item">
+          <div class="num">04 / BOT</div>
+          <div class="what">One bot trading</div>
+          <div class="desc">Your edge codified into a <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a> template, paper-traded, then live.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section id="who">
+  <div class="wrap">
+    <div class="section-eyebrow">Who this is for</div>
+    <h2>Built for the trader who's <em>done bleeding</em> — not the one looking for signals.</h2>
+
+    <div class="who-grid">
+      <div class="who-card yes">
+        <h3>This is for you if</h3>
+        <ul>
+          <li>You have $25k–$250k actively trading on Hyperliquid or similar</li>
+          <li>You've traded for 1–3 years and broken even (or lost a little)</li>
+          <li>You can read your own trade history and admit what isn't working</li>
+          <li>You want a system you trust more than your gut</li>
+          <li>You're done paying for "alpha calls" that go to 1,000 other people</li>
+          <li>You can commit ~3–4 hours per week for 90 days</li>
+        </ul>
+      </div>
+      <div class="who-card no">
+        <h3>This is NOT for you if</h3>
+        <ul>
+          <li>You have less than $10k — different problem, different solution</li>
+          <li>You want signals or trade alerts (this is education, not a service)</li>
+          <li>You want a "get rich in 90 days" story (this is a 12-month build)</li>
+          <li>You're a developer who wants to build a quant fund (different cohort, not yet launched)</li>
+          <li>You can't be honest about your trade history</li>
+          <li>You're looking to be told what to trade, not how to trade</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="wrap">
+    <div class="section-eyebrow">The 90-day arc</div>
+    <h2>Three phases. <em>One bot live</em> by week 12.</h2>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num">PHASE 01</div>
+        <div class="phase-title">Stop the bleed</div>
+        <div class="phase-weeks">Weeks 1–2</div>
+        <ul>
+          <li>Read-only account access + full trade history export</li>
+          <li>Risk audit: position limits, leverage ceilings, loss caps</li>
+          <li>Identify your top 3 blowup risks</li>
+          <li>RiskGuard deployed to your Hyperliquid account</li>
+        </ul>
+        <div class="phase-deliverable">DELIVERABLE → Written risk framework + RiskGuard live enforcing it.</div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">PHASE 02</div>
+        <div class="phase-title">Find your edge</div>
+        <div class="phase-weeks">Weeks 3–8</div>
+        <ul>
+          <li>Tag every trade by setup, hold time, and outcome</li>
+          <li>Isolate 1–2 setups with positive expectancy and real sample</li>
+          <li>Kill non-edges (revenge trades, FOMO, gut calls) with explicit rules</li>
+          <li>Codify entry, exit, sizing, conditions to skip</li>
+        </ul>
+        <div class="phase-deliverable">DELIVERABLE → Documented edge with expected win rate + R:R from your own history.</div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">PHASE 03</div>
+        <div class="phase-title">Ship the bot</div>
+        <div class="phase-weeks">Weeks 9–12</div>
+        <ul>
+          <li>Map your edge to the closest <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a> template</li>
+          <li>Parameterize, backtest, paper-trade for 2 weeks</li>
+          <li>Go live in week 12 — small size, scaled after 30 days</li>
+          <li>Written runbook so you can operate it without me</li>
+        </ul>
+        <div class="phase-deliverable">DELIVERABLE → One bot live on Hyperliquid, trading your edge.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-eyebrow">Investment</div>
+    <h2>Founding cohort: <em>5 spots</em>, half price, lifetime alumni status.</h2>
+
+    <div class="pricing-card">
+      <div class="pricing-grid">
+        <div>
+          <div class="price-amount"><span class="currency">$</span>4,500</div>
+          <div class="price-detail"><strike>$7,500</strike> · founding rate · 1:1 · paid in full</div>
+          <a href="#apply" class="btn-primary" style="margin-top: 12px;">Apply now →</a>
+          <div class="price-future">
+            After the 5 founding spots fill, the next cohort runs as a group of 6–8 at <strong>$7,500</strong>.
+            <br>If you want 1:1 access at half price, this is the only window.
+          </div>
+        </div>
+        <div>
+          <ul class="includes-list">
+            <li><strong>Weekly 1:1 call</strong> with Eddy (1h, 12 weeks)</li>
+            <li><strong>Weekly trade journal review</strong> (30 min, async)</li>
+            <li><strong>RiskGuard configured to your account</strong> (Telegram bot)</li>
+            <li><strong>One <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a> bot shipped live</strong> from your edge</li>
+            <li><strong>Written risk + system framework</strong> you keep forever</li>
+            <li><strong>Alumni perk:</strong> 90 days free + 50% off 12 months <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a> SaaS at launch</li>
+            <li><strong>Lifetime alumni Discord</strong> access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-eyebrow">Questions</div>
+    <h2>The honest <em>FAQ</em>.</h2>
+
+    <div style="margin-top: 16px;">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Will you guarantee profits?<span></span></div>
+        <div class="faq-a">No. Anyone who guarantees you profits in trading is lying or running an exit scam. What I guarantee is that in 90 days you will have a written system, working risk controls, and one bot live. The bot's profitability depends on whether the edge you bring me is real — and the first month of the program is dedicated to figuring that out before we automate anything.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What if I don't have a real edge?<span></span></div>
+        <div class="faq-a">That's the most common case and it's fine. We'll start with the closest <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a> template (trend, mean-revert, breakout, funding) and parameterize it to fit your style and risk tolerance. You'll go live with a known-strategy bot you understand, instead of a black box. The "edge" in that case is process + risk discipline, not a magic setup.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Do I need to know how to code?<span></span></div>
+        <div class="faq-a">No. You'll work with <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a> templates I've already built (the same ones running my own live bots — KronosBot, FibBot, EFCBot, SqueezeBot, TrendBot, etc.). You'll learn to configure them, not write them. If you want to learn to build bots from scratch, that's a different (future) cohort.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How much time per week?<span></span></div>
+        <div class="faq-a">Plan for 3–4 hours per week. 1 hour is our call, 30 minutes is the trade journal you keep, and 1.5–2 hours is reading, journaling, or applying the week's framework. If you can't commit that, the program won't work — don't sign up.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Why $4,500 instead of $499/month?<span></span></div>
+        <div class="faq-a">Because the outcome is fixed at 90 days. A monthly retainer creates the wrong incentive (drag it out forever). A flat 90-day price aligns us — you want the result, I want to deliver it and prove the program works for the next cohort. The $4,500 is paid in full at signup; no payment plans for the founding cohort.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What's RiskGuard and why is it included?<span></span></div>
+        <div class="faq-a">RiskGuard is a Telegram bot I built that connects to your Hyperliquid account and enforces your risk rules — it cancels orders that exceed your size limit, force-closes positions that hit your daily loss cap, and pings you on Telegram when something needs attention. It's free standalone (<a href="https://edgardextra-lang.github.io/riskguard-landing/" style="color:var(--amber); text-decoration: underline;">link</a>), but configuring it correctly to your account, account size, and rules is part of the program.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Is the bot custom-built for me?<span></span></div>
+        <div class="faq-a">It's a <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a> template parameterized to your edge — not a custom build from scratch. Custom dev exists as an optional upsell ($5–10k) for clients whose edge fits no existing template, but ~90% of edges fit one of the 7 templates I already run live with my own money. Same code I trust with my own account.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What if I want to drop out?<span></span></div>
+        <div class="faq-a">Pro-rated refund within the first 14 days, no questions. After day 14, no refunds — by then I've already done the trade journal review and risk audit, which is most of the upfront work. If you finish the 90 days and feel you didn't get what was promised, I'll do another 30 days at no cost to make it right.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Who are you and why should I trust you?<span></span></div>
+        <div class="faq-a">I'm Eddy. I run 17+ live trading bots on Hyperliquid (real money, not paper) — KronosBot, FibBot, EFCBot, SqueezeBot, TrendBot, DeltaBot and others, all visible on the public dashboard. I built RiskGuard, <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank" rel="noopener" style="color:var(--amber); text-decoration: underline;">HyperForge</a>, and the AlphaFinder backtesting infrastructure. I had a paid trading community in 2020 (CryptoEddy) and I have 17.5k followers on TikTok. The vault and bots are publicly verifiable on Hyperliquid — wallet <code style="color:var(--amber); font-size:11px;">0x1cc5...c16b</code>. If you can't find me, ask in the discovery call.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section id="apply" class="final-cta">
+  <div class="wrap">
+    <div class="section-eyebrow">Next step</div>
+    <h2>Book the discovery call. <em>30 minutes.</em></h2>
+    <p>
+      Before you pay anything, we get on a call. I qualify you (capital, history, fit) and you qualify me (am I the right person to help).
+      If we're a fit, you get a Stripe link. If not, no hard feelings — I'd rather refund nobody than refund you.
+    </p>
+    <div class="cta-row">
+      <a href="https://calendar.app.google/KYdPHcE9sB4Uj3A18" target="_blank" rel="noopener" class="btn-primary">Book a 30-min discovery call →</a>
+      <a href="application.html" class="btn-secondary">Or fill the intake first</a>
+    </div>
+    <p style="margin-top: 32px; font-family: var(--font-mono); font-size: 11px; color: var(--paper-mute); letter-spacing: 0.1em;">
+      5 FOUNDING SPOTS · WHEN THEY'RE GONE THE PRICE IS $7,500 IN A COHORT OF 8
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+    <div>SYSTEMATIC TRADER 90 · BY EDDY · BUILT IN PUBLIC</div>
+    <div>
+      <a href="https://edgardextra-lang.github.io/riskguard-landing/" target="_blank">RISKGUARD</a> &nbsp;·&nbsp;
+      <a href="https://edgardextra-lang.github.io/hyperforge-site/" target="_blank">HYPERFORGE</a> &nbsp;·&nbsp;
+      <a href="https://www.tiktok.com/@cryptoeddy" target="_blank">TIKTOK</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+
+</body>
+</html>
