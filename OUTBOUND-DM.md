@@ -29,7 +29,7 @@ I'm capping it at 5 founding spots at $4,500 (half what the
 cohort price will be after). You'd also get 90 days free + 12
 months at half price on HyperForge SaaS when it ships.
 
-If you want details: <https://[your-url]/systematic-trader-90>
+If you want details: <https://edgardextra-lang.github.io/systematic-trader-90>
 
 If you're a fit, here's my calendar for a 30-min discovery call —
 no pitch, just to see if it's the right move for you:
@@ -76,10 +76,10 @@ What you get in 90 days:
 • 90 days free + 50% off 12 months of HyperForge SaaS at launch
 • Lifetime alumni access
 
-Founding price: $4,500 (vs $7,500 standard). 5 spots only,
+Founding price: $4,500 (vs $8,000 standard). 5 spots only,
 1:1 instead of cohort, paid in full.
 
-Full details: https://[your-url]/systematic-trader-90
+Full details: https://edgardextra-lang.github.io/systematic-trader-90
 
 If you want to talk, here's my calendar — 30 min, no pitch,
 just to see if it's a fit:
@@ -109,7 +109,7 @@ Glad you're interested. Three quick things to make this useful:
    <https://calendar.app.google/KYdPHcE9sB4Uj3A18>
 
 If easier, fill the application — takes 5 min, gives me everything I need:
-<https://[your-url]/systematic-trader-90/application.html>
+<https://edgardextra-lang.github.io/systematic-trader-90/application.html>
 
 — Eddy
 ```

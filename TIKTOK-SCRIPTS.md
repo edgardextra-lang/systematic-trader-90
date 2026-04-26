@@ -15,7 +15,7 @@
 
 **Standard CTA caption suffix** (paste at the end of every caption):
 ```
-🔗 link in bio · 5 founding spots, $4,500 (vs $7,500 cohort) · 1:1 with me, 90 days, 1 bot live by the end
+🔗 link in bio · 5 founding spots, $4,500 (vs $8,000 cohort) · 1:1 with me, 90 days, 1 bot live by the end
 ```
 
 ---
@@ -72,7 +72,7 @@ trades. Look at your last 30 trades — split into the ones that
 followed your plan and the ones that didn't. The math always
 shocks people.
 
-🔗 link in bio · 5 founding spots, $4,500 (vs $7,500 cohort) · 1:1 with me, 90 days, 1 bot live by the end
+🔗 link in bio · 5 founding spots, $4,500 (vs $8,000 cohort) · 1:1 with me, 90 days, 1 bot live by the end
 
 #hyperliquid #cryptotrading #systematictrading #algotrading #riskmanagement #cryptoperp #tradingbot #cryptoeducation
 ```
@@ -125,7 +125,7 @@ giving back your monthly gain in one bad Friday afternoon. The
 content for that doesn't exist on FinTok because the creators
 don't have that problem.
 
-🔗 link in bio · 5 founding spots, $4,500 (vs $7,500 cohort) · 1:1 with me, 90 days, 1 bot live by the end
+🔗 link in bio · 5 founding spots, $4,500 (vs $8,000 cohort) · 1:1 with me, 90 days, 1 bot live by the end
 
 #hyperliquid #cryptotrading #systematictrading #algotrading #riskmanagement #cryptoperp #tradingbot #cryptoeducation
 ```
@@ -183,7 +183,7 @@ written system, risk framework, one bot live. Most traders have
 none. The ones who have all three are the ones still here in
 2 years.
 
-🔗 link in bio · 5 founding spots, $4,500 (vs $7,500 cohort) · 1:1 with me, 90 days, 1 bot live by the end
+🔗 link in bio · 5 founding spots, $4,500 (vs $8,000 cohort) · 1:1 with me, 90 days, 1 bot live by the end
 
 #hyperliquid #cryptotrading #systematictrading #algotrading #riskmanagement #cryptoperp #tradingbot #cryptoeducation
 ```

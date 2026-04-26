@@ -24,7 +24,7 @@ In 90 days you walk away with:
 
 Format: weekly 1h call with Eddy + weekly 30-min trade journal review. ~3–4 hours per week of your time.
 
-Founding price: $4,500 paid in full, capped at 5 spots. The next cohort runs at $7,500 in a group of 6–8 — this is the only window for 1:1 access at half price.
+Founding price: $4,500 paid in full, capped at 5 spots. The next cohort runs at $8,000 in a group of 6–8 — this is the only window for 1:1 access at nearly half price.
 
 Refund policy: pro-rated within 14 days, no questions. After day 14, no refunds (the upfront work is done by then). If you finish the 90 days and feel you didn't get what was promised, I'll do another 30 days at no cost to make it right.
 
